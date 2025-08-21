@@ -1,0 +1,12 @@
+
+RewriteEngine On
+
+# /product/slug → product.php?slug=slug
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^product/([^/]+)/?$ product.php?slug=$1 [L,QSA]
+
+# keep static files/directories accessible
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
